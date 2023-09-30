@@ -105,4 +105,4 @@ deploy:
   type: git
   repo: https://github.com/nizne9/nizne9.github.io
   # example, https://github.com/hexojs/hexojs.github.io
-  branch: main
+  branch: gh-pages
