@@ -7,13 +7,13 @@ title: nizne's blog
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: nizne
 language: zh
 timezone: 'PRC'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://blog.nizne.tech
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
