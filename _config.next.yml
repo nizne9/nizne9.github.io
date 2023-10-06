@@ -389,8 +389,8 @@ bookmark:
 
 # `Follow me on GitHub` banner in the top-right corner.
 github_banner:
-  enable: false
-  permalink: https://github.com/yourname
+  enable: true
+  permalink: https://github.com/nizne9
   title: Follow me on GitHub
 
 
@@ -421,8 +421,8 @@ font:
   # Global font settings used for all elements inside <body>.
   global:
     external: true
-    family: Lato
-    size:
+    family: Noto Sans SC
+    size: 
 
   # Font settings for site title (.site-title).
   title:
@@ -439,7 +439,7 @@ font:
   # Font settings for posts (.post-body).
   posts:
     external: true
-    family:
+    family: Noto Sans SC
 
   # Font settings for <code> and code blocks.
   codes:
