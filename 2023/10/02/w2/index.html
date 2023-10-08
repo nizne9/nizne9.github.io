@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.nizne.tech","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="串口工具的配置本博客使用 Linux 下的串口工具 minicom 作为串口通信工具 安装1sudo apt install minicom  使用1sudo minicom -D &#x2F;dev&#x2F;ttyUSB0  其中，具体的设备名称可通过以下命令查询： 1ls &#x2F;dev&#x2F; | grep tty  通过 &lt;C-A&gt;+Z 的组合键，可以打开 minicom 的帮助界面 镜像烧录为了使用 RK">
+    <meta name="description" content="镜像烧录 注：以下过程摘抄自 FireFly 的文档，但是对于如何使用 Upgrade Tool 并不清晰，出现了 Loading firmware failed! 的报错，故请参考 Windows 下的镜像烧录教程  为了使用 RKNN 工具，开发板使用 Ubuntu 19.04 作为操作系统 安装升级工具使用 Upgrade Tool 作为升级工具。首先 下载 Upgrade Tool，然后切">
 <meta property="og:type" content="article">
 <meta property="og:title" content="w2-开发平台环境配置">
 <meta property="og:url" content="https://blog.nizne.tech/2023/10/02/w2/index.html">
 <meta property="og:site_name" content="nizne&#39;s blog">
-<meta property="og:description" content="串口工具的配置本博客使用 Linux 下的串口工具 minicom 作为串口通信工具 安装1sudo apt install minicom  使用1sudo minicom -D &#x2F;dev&#x2F;ttyUSB0  其中，具体的设备名称可通过以下命令查询： 1ls &#x2F;dev&#x2F; | grep tty  通过 &lt;C-A&gt;+Z 的组合键，可以打开 minicom 的帮助界面 镜像烧录为了使用 RK">
+<meta property="og:description" content="镜像烧录 注：以下过程摘抄自 FireFly 的文档，但是对于如何使用 Upgrade Tool 并不清晰，出现了 Loading firmware failed! 的报错，故请参考 Windows 下的镜像烧录教程  为了使用 RKNN 工具，开发板使用 Ubuntu 19.04 作为操作系统 安装升级工具使用 Upgrade Tool 作为升级工具。首先 下载 Upgrade Tool，然后切">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-02T13:41:28.000Z">
-<meta property="article:modified_time" content="2023-10-06T13:10:11.920Z">
+<meta property="article:modified_time" content="2023-10-08T14:13:24.319Z">
 <meta property="article:author" content="nizne">
 <meta property="article:tag" content="嵌入式">
 <meta name="twitter:card" content="summary">
@@ -112,7 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%B2%E5%8F%A3%E5%B7%A5%E5%85%B7%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">串口工具的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E7%83%A7%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">镜像烧录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%8D%87%E7%BA%A7%E5%B7%A5%E5%85%B7"><span class="nav-number">2.1.</span> <span class="nav-text">安装升级工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%89%80%E9%9C%80%E5%9B%BA%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">下载所需固件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BA%E4%BB%B6%E7%83%A7%E5%86%99"><span class="nav-number">2.3.</span> <span class="nav-text">固件烧写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">网络配置</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E7%83%A7%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">镜像烧录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%8D%87%E7%BA%A7%E5%B7%A5%E5%85%B7"><span class="nav-number">1.1.</span> <span class="nav-text">安装升级工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%89%80%E9%9C%80%E5%9B%BA%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">下载所需固件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BA%E4%BB%B6%E7%83%A7%E5%86%99"><span class="nav-number">1.3.</span> <span class="nav-text">固件烧写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%B2%E5%8F%A3%E5%B7%A5%E5%85%B7%E7%9A%84%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">串口工具的配置和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#curl-%E7%99%BB%E5%BD%95%E5%88%B0-BUPT-portal"><span class="nav-number">3.1.</span> <span class="nav-text">curl 登录到 BUPT-portal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BA%BF%E7%9B%B4%E8%BF%9E%E7%99%BB%E5%BD%95"><span class="nav-number">3.2.</span> <span class="nav-text">网线直连登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%89%8B%E6%9C%BA%E7%83%AD%E7%82%B9%E7%99%BB%E5%BD%95"><span class="nav-number">3.3.</span> <span class="nav-text">通过手机热点登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-ssh-%E7%99%BB%E5%BD%95%E5%88%B0%E5%BC%80%E5%8F%91%E6%9D%BF"><span class="nav-number">4.</span> <span class="nav-text">通过 ssh 登录到开发板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">优化使用的一些设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-fish-shell"><span class="nav-number">5.1.</span> <span class="nav-text">安装 fish shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-tldr-page"><span class="nav-number">5.2.</span> <span class="nav-text">安装 tldr page</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -204,7 +204,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-06 21:10:11" itemprop="dateModified" datetime="2023-10-06T21:10:11+08:00">2023-10-06</time>
+      <time title="修改时间：2023-10-08 22:13:24" itemprop="dateModified" datetime="2023-10-08T22:13:24+08:00">2023-10-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -225,7 +225,22 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="串口工具的配置"><a href="#串口工具的配置" class="headerlink" title="串口工具的配置"></a>串口工具的配置</h2><p>本博客使用 Linux 下的串口工具 <code>minicom</code> 作为串口通信工具</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="镜像烧录"><a href="#镜像烧录" class="headerlink" title="镜像烧录"></a>镜像烧录</h2><blockquote>
+<p>注：以下过程摘抄自 <a target="_blank" rel="noopener" href="https://wiki.t-firefly.com/zh_CN/AIO-3289J/upgrade_firmware.html#upgrade-tool">FireFly 的文档</a>，但是对于如何使用 <code>Upgrade Tool</code> 并不清晰，出现了 <code>Loading firmware failed!</code> 的报错，故请参考 Windows 下的镜像烧录教程</p>
+</blockquote>
+<p>为了使用 <code>RKNN</code> 工具，开发板使用 <code>Ubuntu 19.04</code> 作为操作系统</p>
+<h3 id="安装升级工具"><a href="#安装升级工具" class="headerlink" title="安装升级工具"></a>安装升级工具</h3><p>使用 <code>Upgrade Tool</code> 作为升级工具。首先 <a target="_blank" rel="noopener" href="https://www.t-firefly.com/doc/download/100.html#other_247">下载 Upgrade Tool</a>，然后切换到下载目录下，运行以下命令进行安装：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">unzip Linux_Upgrade_Tool_xxxx.zip</span><br><span class="line"><span class="built_in">cd</span> Linux_UpgradeTool_xxxx</span><br><span class="line">sudo <span class="built_in">mv</span> upgrade_tool /usr/local/bin</span><br><span class="line">sudo <span class="built_in">chown</span> root:root /usr/local/bin/upgrade_tool</span><br><span class="line">sudo <span class="built_in">chmod</span> a+x /usr/local/bin/upgrade_tool</span><br></pre></td></tr></table></figure>
+
+<p>其中 xxxx 为具体的版本号，此处使用 <code>v2.14</code></p>
+<h3 id="下载所需固件"><a href="#下载所需固件" class="headerlink" title="下载所需固件"></a>下载所需固件</h3><p>使用百度云 <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/0Xo2h-FxQVy_nsLTfs9ljEA?pwd=lol4#list/path=%2Fsharelink1095276507-238645541930475%2F%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%2F%E5%9B%BA%E4%BB%B6%E9%95%9C%E5%83%8F%2F04_Ubuntu20%E9%95%9C%E5%83%8F&parentPath=%2Fsharelink1095276507-238645541930475">下载所需固件</a></p>
+<h3 id="固件烧写"><a href="#固件烧写" class="headerlink" title="固件烧写"></a>固件烧写</h3><p>将开发板连接电源，连接串口，连接双头烧写线，其中烧写线应该连接到单个 USB 口处，如图所示：</p>
+<p>TODO</p>
+<p>将上图的拨码开关向下拨，切换 USB2.0 为 OTG 烧写模式，按住开发板底部的 <code>VOL+</code> 按键不松开，然后按下电源启动开发板，使用以下命令烧写统一固件 <code>upgrade.img</code>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo upgrade_tool uf update.img</span><br></pre></td></tr></table></figure>
+
+<p>如果烧写遇到问题，请查看 <a target="_blank" rel="noopener" href="https://dev.t-firefly.com/thread-104418-1-1.html">问题排查</a></p>
+<h2 id="串口工具的配置和使用"><a href="#串口工具的配置和使用" class="headerlink" title="串口工具的配置和使用"></a>串口工具的配置和使用</h2><p>本博客使用 Linux 下的串口工具 <code>minicom</code> 作为串口通信工具</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install minicom</span><br></pre></td></tr></table></figure>
 
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo minicom -D /dev/ttyUSB0</span><br></pre></td></tr></table></figure>
@@ -233,20 +248,57 @@
 <p>其中，具体的设备名称可通过以下命令查询：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> /dev/ | grep <span class="built_in">tty</span></span><br></pre></td></tr></table></figure>
 
-<p>通过 <code>&lt;C-A&gt;+Z</code> 的组合键，可以打开 <code>minicom</code> 的帮助界面</p>
-<h2 id="镜像烧录"><a href="#镜像烧录" class="headerlink" title="镜像烧录"></a>镜像烧录</h2><p>为了使用 <code>RKNN</code> 工具，开发板使用 <code>Ubuntu 20.04</code> 作为操作系统</p>
-<h3 id="安装升级工具"><a href="#安装升级工具" class="headerlink" title="安装升级工具"></a>安装升级工具</h3><p>使用 <code>Upgrade Tool</code> 作为升级工具。首先 <a target="_blank" rel="noopener" href="https://www.t-firefly.com/doc/download/101.html#other_247">下载 Upgrade Tool</a>，然后切换到下载目录下，运行以下命令进行安装：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">unzip Linux_Upgrade_Tool_xxxx.zip</span><br><span class="line"><span class="built_in">cd</span> Linux_UpgradeTool_xxxx</span><br><span class="line">sudo <span class="built_in">mv</span> upgrade_tool /usr/local/bin</span><br><span class="line">sudo <span class="built_in">chown</span> root:root /usr/local/bin/upgrade_tool</span><br><span class="line">sudo <span class="built_in">chmod</span> a+x /usr/local/bin/upgrade_tool</span><br></pre></td></tr></table></figure>
+<p>通过 <code>&lt;C-A&gt;+Z</code> 的组合键，打开 <code>minicom</code> 的帮助界面，按下 <code>O</code> 进入设置界面，用键盘选择光标，移动到 <code>Serial port setup</code> &#x2F; <code>串口设置</code>，然后更改 <code>Hardware Flow Control</code> 和 <code>Software Flow Control</code> 两项设置为 <code>No</code>，回到上一菜单选择 <code>Save setup as dfl</code> 进行保存（<a target="_blank" rel="noopener" href="https://wiki.t-firefly.com/iCore-3568JQ/debug.html#ubuntu-shang-shi-yong-chuan-kou-tiao-shi">参考</a>）</p>
+<p>完成后按下回车，输入用户名和密码（都为 <code>topeet</code>），输出如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">Ubuntu 20.04.6 LTS iTOP-RK3568 ttyFIQ0</span><br><span class="line"></span><br><span class="line">iTOP-RK3568 login: topeet</span><br><span class="line">密码：</span><br><span class="line">Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 4.19.232 aarch64)</span><br><span class="line"></span><br><span class="line"> * Documentation:  https://help.ubuntu.com</span><br><span class="line"> * Management:     https://landscape.canonical.com</span><br><span class="line"> * Support:        https://ubuntu.com/advantage</span><br><span class="line"> _ _____ ___  ____       ____  _  ___________   __    ___</span><br><span class="line">(_)_   _/ _ \|  _ \     |  _ \| |/ /___ / ___| / /_  ( _ )</span><br><span class="line">| | | || | | | |_) |____| |_) | <span class="string">&#x27; /  |_ \___ \| &#x27;</span>_ \ / _ \</span><br><span class="line">| | | || |_| |  __/_____|  _ &lt;| . \ ___) |__) | (_) | (_) |</span><br><span class="line">|_| |_| \___/|_|        |_| \_\_|\_\____/____/ \___/ \___/</span><br><span class="line"></span><br><span class="line">System load:   4%               Up time:       8 min</span><br><span class="line">Memory usage:  27% of 1.92G     IP:</span><br><span class="line">CPU temp:      41°C             Usage of /:    29% of 12G</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  System information as of 2023年 10月 08日 星期日 10:29:53 UTC</span><br><span class="line"></span><br><span class="line">  System load:  0.17               Swap usage:  0%       Users logged i1</span><br><span class="line">  Usage of /:   27.6% of 11.75GB   Temperature: 43.1 C</span><br><span class="line">  Memory usage: 31%                Processes:   210</span><br><span class="line"></span><br><span class="line">扩展安全维护（ESM）Applications 未启用。</span><br><span class="line"></span><br><span class="line">0 �可以立即应用。</span><br><span class="line"></span><br><span class="line">启用 ESM Apps 来获取未来的额外安全更新</span><br><span class="line">See https://ubuntu.com/esm or run: sudo pro status</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">The list of available updates is more than a week old.</span><br><span class="line">To check <span class="keyword">for</span> new updates run: sudo apt update</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">The programs included with the Ubuntu system are free software;</span><br><span class="line">the exact distribution terms <span class="keyword">for</span> each program are described <span class="keyword">in</span> the</span><br><span class="line">individual files <span class="keyword">in</span> /usr/share/doc/*/copyright.</span><br><span class="line"></span><br><span class="line">Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by</span><br><span class="line">applicable law.</span><br></pre></td></tr></table></figure>
 
-<p>其中 xxxx 为具体的版本号，此处使用 <code>v3.14</code></p>
-<h3 id="下载所需固件"><a href="#下载所需固件" class="headerlink" title="下载所需固件"></a>下载所需固件</h3><p>使用百度云 <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Xo2h-FxQVy_nsLTfs9ljEA?pwd=lol4#list/path=%2Fsharelink1095276507-238645541930475%2F%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%2F%E5%9B%BA%E4%BB%B6%E9%95%9C%E5%83%8F%2F04_Ubuntu20%E9%95%9C%E5%83%8F&parentPath=%2Fsharelink1095276507-238645541930475">下载所需固件</a></p>
-<h3 id="固件烧写"><a href="#固件烧写" class="headerlink" title="固件烧写"></a>固件烧写</h3><p>将开发板连接电源，连接串口，连接双头烧写线，其中烧写线应该连接到单个 USB 口处，如图所示：</p>
-<p>TODO</p>
-<p>将上图的拨码开关向下拨，切换 USB3.0 为 OTG 烧写模式，按住开发板底部的 <code>VOL+</code> 按键不松开，然后按下电源启动开发板，使用以下命令烧写统一固件 <code>upgrade.img</code>：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo upgrade_tool uf update.img</span><br></pre></td></tr></table></figure>
+<h2 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h2><h3 id="curl-登录到-BUPT-portal"><a href="#curl-登录到-BUPT-portal" class="headerlink" title="curl 登录到 BUPT-portal"></a><code>curl</code> 登录到 <code>BUPT-portal</code></h3><p>保持 <a href="#%E9%80%9A%E8%BF%87%E6%89%8B%E6%9C%BA%E7%83%AD%E7%82%B9%E7%99%BB%E5%BD%95">热点的连接</a>，使用如下的命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="string">&#x27;http://10.3.8.211/index&#x27;</span> --data <span class="string">&#x27;user=$&#123;username&#125;&amp;password=$&#123;password&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>如果烧写遇到问题，请查看 <a target="_blank" rel="noopener" href="https://dev.t-firefly.com/thread-104417-1-1.html">问题排查</a></p>
-<h2 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h2><p>TODO</p>
+<p>把其中的 <code>$&#123;username&#125;</code> 和 <code>$&#123;password&#125;</code> 替换为自己的账号密码</p>
+<p>然后使用 <code>nmcli</code> 连接到 WIFI：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nmcli dev wifi connect <span class="string">&quot;BUPT-portal&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="网线直连登录"><a href="#网线直连登录" class="headerlink" title="网线直连登录"></a>网线直连登录</h3><p>TODO</p>
+<h3 id="通过手机热点登录"><a href="#通过手机热点登录" class="headerlink" title="通过手机热点登录"></a>通过手机热点登录</h3><p>打开手机热点，关闭 WIFI6，将 AP 频段选择为 2.4 GHz，然后输入以下命令打开开发板 WIFI：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nmcli dev wifi on</span><br></pre></td></tr></table></figure>
+
+<p>再通过以下命令进行连接：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nmcli dev wifi connect <span class="string">&quot;SSID&quot;</span> password <span class="string">&quot;PASSWORD&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>将上述命令的 SSID 和 PASSWORD 替换为帐号和密码</p>
+<h2 id="通过-ssh-登录到开发板"><a href="#通过-ssh-登录到开发板" class="headerlink" title="通过 ssh 登录到开发板"></a>通过 <code>ssh</code> 登录到开发板</h2><p>首先，通过以下命令确认两台设备在同一网段下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip a | grep brd</span><br></pre></td></tr></table></figure>
+
+<p>开发板已经启用了 ssh 服务，用如下命令确认终端是否启用 ssh 服务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status ssh</span><br></pre></td></tr></table></figure>
+
+<p>如果未安装，使用如下命令安装：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-server</span><br></pre></td></tr></table></figure>
+
+<p>无误后，连接到开发板：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh topeet@<span class="variable">$&#123;ip&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>用实际 ip 来替换 <code>$&#123;ip&#125;</code></p>
+<h2 id="优化使用的一些设置"><a href="#优化使用的一些设置" class="headerlink" title="优化使用的一些设置"></a>优化使用的一些设置</h2><h3 id="安装-fish-shell"><a href="#安装-fish-shell" class="headerlink" title="安装 fish shell"></a>安装 <code>fish shell</code></h3><p><a target="_blank" rel="noopener" href="https://fishshell.com/">fish</a> 是一款开箱即用的 <code>Shell</code>，附带了自动补全、建议和语法高亮等功能。联网后，通过以下命令安装：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install fish</span><br></pre></td></tr></table></figure>
+
+<p>切换默认的 Shell：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /usr/bin/fish</span><br></pre></td></tr></table></figure>
+
+<p>其中，具体的安装位置可通过以下命令查看：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> /etc/shells</span><br></pre></td></tr></table></figure>
+
+<p>更改后，需重启才能生效</p>
+<h3 id="安装-tldr-page"><a href="#安装-tldr-page" class="headerlink" title="安装 tldr page"></a>安装 <code>tldr page</code></h3><p><a target="_blank" rel="noopener" href="https://tldr.sh/">tldr</a> 是一款类似于 <code>man</code> 的帮助界面，正如它的名字一样：Too Long; Didn’t Read.</p>
+<p>因为 <code>Ubuntu</code> 本身自带 Python，故通过 <code>pip</code> 安装：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip3 install tldr --system</span><br></pre></td></tr></table></figure>
+
+<p><code>--system</code> 意味着在系统级别安装，不加这个标志则默认在用户级别安装，日后使用则需要通过 Python 环境进行使用：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m tldr</span><br></pre></td></tr></table></figure>
+
+<p>安装完毕后，输入 <code>tldr</code> 即可使用，示例如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tldr tar</span><br></pre></td></tr></table></figure>
 
     </div>
 
