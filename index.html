@@ -161,7 +161,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.nizne.tech/2023/10/10/w5/">
+    <link itemprop="mainEntityOfPage" href="https://blog.nizne.tech/2023/10/10/w5~7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,7 +179,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/10/10/w5/" class="post-title-link" itemprop="url">w5-NPU 环境配置</a>
+          <a href="/2023/10/10/w5~7/" class="post-title-link" itemprop="url">w5~7-NPU 运行实例</a>
         </h2>
 
         <div class="post-meta-container">
@@ -197,7 +197,16 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-17 13:00:08" itemprop="dateModified" datetime="2023-10-17T13:00:08+08:00">2023-10-17</time>
+      <time title="修改时间：2023-10-26 22:52:34" itemprop="dateModified" datetime="2023-10-26T22:52:34+08:00">2023-10-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Intelligent-information-system-design/" itemprop="url" rel="index"><span itemprop="name">Intelligent information system design</span></a>
+        </span>
     </span>
 
   
@@ -212,7 +221,70 @@
     <div class="post-body" itemprop="articleBody">
           <blockquote>
 <p><code>w4</code> 是国庆，故没有 <code>w4</code></p>
+<p>遇到问题请先阅读 <a href="#faqs">FAQs</a></p>
 </blockquote>
+<h2 id="模型转换"><a href="#模型转换" class="headerlink" title="模型转换"></a>模型转换</h2><p>对应于 <code>01_export_rknn</code>，在虚拟机上运行</p>
+<p>在目录下打开终端，激活 Conda 环境：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate rknn</span><br></pre></td></tr></table></figure>
+
+<p>请自行替换为自己的环境</p>
+<p>然后运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 export_rknn.py</span><br></pre></td></tr></table></figure>
+
+<h2 id="连扳推理"><a href="#连扳推理" class="headerlink" title="连扳推理"></a>连扳推理</h2><p>对应于 <code>02_inference</code></p>
+<p>在开发板上运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash /usr/bin/start_rknn.sh</span><br></pre></td></tr></table></figure>
+
+<p>在目录下打开终端，激活环境后运行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python inference_pytorch.py</span><br></pre></td></tr></table></figure>
+
+<p>和</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python inference_rknn.py</span><br></pre></td></tr></table></figure>
+
+<h2 id="RKNN-toolkit-lite2-运行"><a href="#RKNN-toolkit-lite2-运行" class="headerlink" title="RKNN toolkit lite2 运行"></a>RKNN toolkit lite2 运行</h2><p>对应于 <code>06_rknntoolkitlite2</code></p>
+<p>在开发板上打开文件夹 <code>06_rknntoolkitlite2</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 06_rknntoolkitlite2</span><br></pre></td></tr></table></figure>
+
+<p>激活 Conda 环境：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate rknn</span><br></pre></td></tr></table></figure>
+
+<p>运行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 rknntoolkitlite2.py</span><br></pre></td></tr></table></figure>
+
+<h2 id="YOLOv5"><a href="#YOLOv5" class="headerlink" title="YOLOv5"></a>YOLOv5</h2><p>对应于 <code>07_yolov5</code></p>
+<p>在目录下打开终端，激活环境后运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python test.py</span><br></pre></td></tr></table></figure>
+
+<p>现象：出现一张检测后的图片，按任意键消失</p>
+<h2 id="RKNPU2"><a href="#RKNPU2" class="headerlink" title="RKNPU2"></a>RKNPU2</h2><p>对应于 <code>rknn_yolov5_demo</code></p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>在虚拟机的终端上打开 <code>rknn_yolov5_demo</code>，修改文件 <code>build-linux_RK3566_RK3568.sh</code> 如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TOOL_CHAIN=～/Downloads/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu</span><br><span class="line">GCC_COMPILER=<span class="variable">$&#123;TOOL_CHAIN&#125;</span>/bin/aarch64-linux-gnu</span><br></pre></td></tr></table></figure>
+
+<p>请自行替换路径，不过多说明</p>
+<p>然后运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash ./build-linux_RK3566_RK3568.sh</span><br></pre></td></tr></table></figure>
+
+<p>一切无误后，当前目录会多出一个 <code>install</code> 文件夹，将里面的文件夹 <code>rknn_yolov5_demo_Linux</code> 传到开发板上：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r ./rknn_yolov5_demo_Linux topeet@<span class="variable">$&#123;ip&#125;</span>:~/</span><br></pre></td></tr></table></figure>
+
+<p>这里也可以用软件传输</p>
+<p>在开发板上切换到文件夹 <code>rknn_yolov5_demo_Linux</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> rknn_yolov5_demo_Linux</span><br></pre></td></tr></table></figure>
+
+<p>设置变量</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=./lib</span><br></pre></td></tr></table></figure>
+
+<p>然后运行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./rknn_yolov5_demo  ./model/RK3566_RK3568/yolov5s-640-640.rknn model/bus.jpg</span><br></pre></td></tr></table></figure>
+
+<h2 id="FAQs"><a href="#FAQs" class="headerlink" title="FAQs"></a>FAQs</h2><p><strong>Q</strong>: 报错权限不够怎么办？</p>
+<p>A: 请先运行 <code>chomod u+x</code> 加文件名来提升权限</p>
+<p><strong>Q</strong>: Command ‘adb’ not found</p>
+<p>A: 请确认是否在开发板运行 <code>/usr/bin/start_rknn.sh</code>，<br>或者在虚拟机上运行 <code>sudo apt install adb</code></p>
+<p><strong>Q</strong>: The ‘target’ is rk3588, but your config.target_platform is ‘rk3568’!</p>
+<p>A: 请将文件里的 3588 修改为 3568</p>
+<p><strong>Q</strong>: GLIBC 缺失</p>
+<p>A: 请下载 Ubuntu20.04 镜像，或者自己编译缺失的依赖</p>
 
       
     </div>

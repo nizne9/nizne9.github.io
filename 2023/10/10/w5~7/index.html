@@ -19,27 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.nizne.tech","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="w4 是国庆，故没有 w4">
+    <meta name="description" content="w4 是国庆，故没有 w4 遇到问题请先阅读 FAQs  模型转换对应于 01_export_rknn，在虚拟机上运行 在目录下打开终端，激活 Conda 环境： 1conda activate rknn  请自行替换为自己的环境 然后运行： 1python3 export_rknn.py  连扳推理对应于 02_inference 在开发板上运行： 1bash &#x2F;usr&#x2F;bin&#x2F;start_r">
 <meta property="og:type" content="article">
-<meta property="og:title" content="w5-NPU 环境配置">
-<meta property="og:url" content="https://blog.nizne.tech/2023/10/10/w5/index.html">
+<meta property="og:title" content="w5~7-NPU 运行实例">
+<meta property="og:url" content="https://blog.nizne.tech/2023/10/10/w5~7/index.html">
 <meta property="og:site_name" content="nizne&#39;s blog">
-<meta property="og:description" content="w4 是国庆，故没有 w4">
+<meta property="og:description" content="w4 是国庆，故没有 w4 遇到问题请先阅读 FAQs  模型转换对应于 01_export_rknn，在虚拟机上运行 在目录下打开终端，激活 Conda 环境： 1conda activate rknn  请自行替换为自己的环境 然后运行： 1python3 export_rknn.py  连扳推理对应于 02_inference 在开发板上运行： 1bash &#x2F;usr&#x2F;bin&#x2F;start_r">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-10T05:03:29.000Z">
-<meta property="article:modified_time" content="2023-10-17T05:00:08.569Z">
+<meta property="article:modified_time" content="2023-10-26T14:52:34.414Z">
 <meta property="article:author" content="nizne">
+<meta property="article:tag" content="嵌入式">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://blog.nizne.tech/2023/10/10/w5/">
+<link rel="canonical" href="https://blog.nizne.tech/2023/10/10/w5~7/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.nizne.tech/2023/10/10/w5/","path":"2023/10/10/w5/","title":"w5-NPU 环境配置"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.nizne.tech/2023/10/10/w5~7/","path":"2023/10/10/w5~7/","title":"w5~7-NPU 运行实例"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>w5-NPU 环境配置 | nizne's blog</title>
+<title>w5~7-NPU 运行实例 | nizne's blog</title>
   
 
 
@@ -98,7 +99,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -111,6 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">模型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E6%89%B3%E6%8E%A8%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">连扳推理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RKNN-toolkit-lite2-%E8%BF%90%E8%A1%8C"><span class="nav-number">3.</span> <span class="nav-text">RKNN toolkit lite2 运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLOv5"><span class="nav-number">4.</span> <span class="nav-text">YOLOv5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RKNPU2"><span class="nav-number">5.</span> <span class="nav-text">RKNPU2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-number">5.1.</span> <span class="nav-text">编译</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAQs"><span class="nav-number">6.</span> <span class="nav-text">FAQs</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -166,7 +168,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.nizne.tech/2023/10/10/w5/">
+    <link itemprop="mainEntityOfPage" href="https://blog.nizne.tech/2023/10/10/w5~7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,12 +181,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="w5-NPU 环境配置 | nizne's blog">
+      <meta itemprop="name" content="w5~7-NPU 运行实例 | nizne's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          w5-NPU 环境配置
+          w5~7-NPU 运行实例
         </h1>
 
         <div class="post-meta-container">
@@ -202,7 +204,16 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-17 13:00:08" itemprop="dateModified" datetime="2023-10-17T13:00:08+08:00">2023-10-17</time>
+      <time title="修改时间：2023-10-26 22:52:34" itemprop="dateModified" datetime="2023-10-26T22:52:34+08:00">2023-10-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Intelligent-information-system-design/" itemprop="url" rel="index"><span itemprop="name">Intelligent information system design</span></a>
+        </span>
     </span>
 
   
@@ -216,7 +227,70 @@
     
     <div class="post-body" itemprop="articleBody"><blockquote>
 <p><code>w4</code> 是国庆，故没有 <code>w4</code></p>
+<p>遇到问题请先阅读 <a href="#faqs">FAQs</a></p>
 </blockquote>
+<h2 id="模型转换"><a href="#模型转换" class="headerlink" title="模型转换"></a>模型转换</h2><p>对应于 <code>01_export_rknn</code>，在虚拟机上运行</p>
+<p>在目录下打开终端，激活 Conda 环境：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate rknn</span><br></pre></td></tr></table></figure>
+
+<p>请自行替换为自己的环境</p>
+<p>然后运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 export_rknn.py</span><br></pre></td></tr></table></figure>
+
+<h2 id="连扳推理"><a href="#连扳推理" class="headerlink" title="连扳推理"></a>连扳推理</h2><p>对应于 <code>02_inference</code></p>
+<p>在开发板上运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash /usr/bin/start_rknn.sh</span><br></pre></td></tr></table></figure>
+
+<p>在目录下打开终端，激活环境后运行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python inference_pytorch.py</span><br></pre></td></tr></table></figure>
+
+<p>和</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python inference_rknn.py</span><br></pre></td></tr></table></figure>
+
+<h2 id="RKNN-toolkit-lite2-运行"><a href="#RKNN-toolkit-lite2-运行" class="headerlink" title="RKNN toolkit lite2 运行"></a>RKNN toolkit lite2 运行</h2><p>对应于 <code>06_rknntoolkitlite2</code></p>
+<p>在开发板上打开文件夹 <code>06_rknntoolkitlite2</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 06_rknntoolkitlite2</span><br></pre></td></tr></table></figure>
+
+<p>激活 Conda 环境：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate rknn</span><br></pre></td></tr></table></figure>
+
+<p>运行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 rknntoolkitlite2.py</span><br></pre></td></tr></table></figure>
+
+<h2 id="YOLOv5"><a href="#YOLOv5" class="headerlink" title="YOLOv5"></a>YOLOv5</h2><p>对应于 <code>07_yolov5</code></p>
+<p>在目录下打开终端，激活环境后运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python test.py</span><br></pre></td></tr></table></figure>
+
+<p>现象：出现一张检测后的图片，按任意键消失</p>
+<h2 id="RKNPU2"><a href="#RKNPU2" class="headerlink" title="RKNPU2"></a>RKNPU2</h2><p>对应于 <code>rknn_yolov5_demo</code></p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>在虚拟机的终端上打开 <code>rknn_yolov5_demo</code>，修改文件 <code>build-linux_RK3566_RK3568.sh</code> 如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TOOL_CHAIN=～/Downloads/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu</span><br><span class="line">GCC_COMPILER=<span class="variable">$&#123;TOOL_CHAIN&#125;</span>/bin/aarch64-linux-gnu</span><br></pre></td></tr></table></figure>
+
+<p>请自行替换路径，不过多说明</p>
+<p>然后运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash ./build-linux_RK3566_RK3568.sh</span><br></pre></td></tr></table></figure>
+
+<p>一切无误后，当前目录会多出一个 <code>install</code> 文件夹，将里面的文件夹 <code>rknn_yolov5_demo_Linux</code> 传到开发板上：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r ./rknn_yolov5_demo_Linux topeet@<span class="variable">$&#123;ip&#125;</span>:~/</span><br></pre></td></tr></table></figure>
+
+<p>这里也可以用软件传输</p>
+<p>在开发板上切换到文件夹 <code>rknn_yolov5_demo_Linux</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> rknn_yolov5_demo_Linux</span><br></pre></td></tr></table></figure>
+
+<p>设置变量</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=./lib</span><br></pre></td></tr></table></figure>
+
+<p>然后运行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./rknn_yolov5_demo  ./model/RK3566_RK3568/yolov5s-640-640.rknn model/bus.jpg</span><br></pre></td></tr></table></figure>
+
+<h2 id="FAQs"><a href="#FAQs" class="headerlink" title="FAQs"></a>FAQs</h2><p><strong>Q</strong>: 报错权限不够怎么办？</p>
+<p>A: 请先运行 <code>chomod u+x</code> 加文件名来提升权限</p>
+<p><strong>Q</strong>: Command ‘adb’ not found</p>
+<p>A: 请确认是否在开发板运行 <code>/usr/bin/start_rknn.sh</code>，<br>或者在虚拟机上运行 <code>sudo apt install adb</code></p>
+<p><strong>Q</strong>: The ‘target’ is rk3588, but your config.target_platform is ‘rk3568’!</p>
+<p>A: 请将文件里的 3588 修改为 3568</p>
+<p><strong>Q</strong>: GLIBC 缺失</p>
+<p>A: 请下载 Ubuntu20.04 镜像，或者自己编译缺失的依赖</p>
 
     </div>
 
@@ -234,7 +308,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://blog.nizne.tech/2023/10/10/w5/" title="w5-NPU 环境配置">https://blog.nizne.tech/2023/10/10/w5/</a>
+      <a href="https://blog.nizne.tech/2023/10/10/w5~7/" title="w5~7-NPU 运行实例">https://blog.nizne.tech/2023/10/10/w5~7/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -242,6 +316,9 @@
 </ul>
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag"># 嵌入式</a>
+          </div>
 
         
 
